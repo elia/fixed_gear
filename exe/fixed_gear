@@ -25,6 +25,19 @@ when 'new'
   p new_site: new_site
   new_site.install
 
+when 'deploy'
+  sync_bucket = -> profile, bucket {
+    unless system("aws --profile #{profile} s3 --region eu-central-1 sync build/ \"s3://#{bucket}\" --acl public-read")
+      warn "Install and configure aws-cli: brew install awscli; aws configure --profile #{profile}"
+      exit 1
+    end
+  }
+  raise "usage: fixed_gear deploy <PROFILE> <BUCKET>" if argv.size != 2
+  builder = FixedGear::Builder.new(site)
+  builder.clean
+  builder.call
+  sync_bucket[*argv]
+
 else
   usage
 end
