@@ -35,12 +35,14 @@ module FixedGear
       end
 
       def data(name)
-        asset = depend_on_asset("#{name}.yml")
+        asset = depend_on_asset("#{name}.yml") || depend_on_asset("#{name}.yaml")
+
         @data ||= {}
         @data[name.to_sym] ||= begin
           symbolize = nil
+          strict_hash = -> hash, key { raise ArgumentError, "can't find key: #{key.inspect} in #{hash}" }
           symbolize_hash = -> hash {
-            new_hash = {}
+            new_hash = Hash.new(&strict_hash)
             hash.each { |k,v| new_hash[k.to_sym] = symbolize[v] }
             new_hash
           }
