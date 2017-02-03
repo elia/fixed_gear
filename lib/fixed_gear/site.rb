@@ -26,9 +26,8 @@ class FixedGear::Site
 
     'config.ru': <<~CONFIG_RU,
     require 'bundler/setup'
-    site = FixedGear::Site.new(root: __dir__)
-    use Rack::Static, root: site.build_dir, urls: [""], index: 'index.html'
-    run -> env { [404, {}, []] }
+    require 'fixed_gear'
+    use FixedGear::Server::Rack.for_dir(__dir__)
     CONFIG_RU
   }
 

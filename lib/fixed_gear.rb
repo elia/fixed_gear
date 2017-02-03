@@ -1,9 +1,9 @@
 require "fixed_gear/version"
 
 module FixedGear
-  autoload :Site, 'fixed_gear/site'
-  autoload :Builder, 'fixed_gear/builder'
-  autoload :Server, 'fixed_gear/server'
+  autoload :Site,     'fixed_gear/site'
+  autoload :Builder,  'fixed_gear/builder'
+  autoload :Server,   'fixed_gear/server'
 
   class << self
     def logger
