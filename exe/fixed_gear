@@ -11,6 +11,7 @@ p command: command, argv: argv
 case command
 when 'build'
   builder = FixedGear::Builder.new(site)
+  builder.load_config
   builder.clean
   builder.call
 
