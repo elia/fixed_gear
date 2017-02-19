@@ -28,7 +28,7 @@ module FixedGear
       end
 
       def render(name, **locals)
-        path = "_#{name}"
+        path = name.sub(%r{(/|^)([^/]+)}, '\1_\2')
         asset = depend_on_asset(path)
         extension = File.extname(asset.filename)
         ::FixedGear::Renderers[extension].call(self, asset, locals)
