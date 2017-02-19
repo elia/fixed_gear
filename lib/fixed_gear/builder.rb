@@ -35,7 +35,7 @@ module FixedGear
       end
 
       def data(name)
-        asset = depend_on_asset("#{name}.yml") || depend_on_asset("#{name}.yaml")
+        asset = depend_on_asset("#{name}.yml")
 
         @data ||= {}
         @data[name.to_sym] ||= begin
