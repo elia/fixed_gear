@@ -27,7 +27,7 @@ class FixedGear::Site
     'config.ru': <<~CONFIG_RU,
     require 'bundler/setup'
     require 'fixed_gear'
-    use FixedGear::Server::Rack.for_dir(__dir__)
+    run FixedGear::Server::Rack.for_dir(__dir__)
     CONFIG_RU
   }
 

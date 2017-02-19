@@ -16,8 +16,9 @@ when 'build'
   builder.call
 
 when 'server'
-  require 'fixed_gear/server'
-  FixedGear::Server.new(site).start
+  require 'fixed_gear'
+  app = FixedGear::Server::Rack.for_site(site)
+  Rack::Server.new(app: app, logger: FixedGear.logger).start { |server| @server = server }
 
 when 'new'
   new_root = argv.shift
