@@ -92,7 +92,7 @@ module FixedGear
       manifest.clean(0, 0)
       manifest.compile('index.html')
       ::FixedGear.no_digest_paths.each do |path|
-        site.build_dir.join(path).open('w') {|f| f << environment[path] }
+        site.build_dir.join(path).write environment[path]
       end
       # manifest.files.each do |path, data|
       #   if path.end_with?('.html')
