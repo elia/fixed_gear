@@ -41,5 +41,23 @@ when 'deploy'
   sync_bucket[*argv]
 
 else
-  usage
+  puts <<~USAGE
+  FixedGear is a Sprockets based static site framework.
+
+  Getting started:
+
+    fixed_gear new DIR_NAME # sets up a new fixed_gear site in a folder named DIR_NAME
+
+  Development:
+
+    fixed_gear build  # builds the current site to build/
+    fixed_gear server # starts a server from source/
+    fixed_gear update # updates the config.ru file (for Rack servers)
+
+  Deploy:
+
+    fixed_gear deploy AWS_PROFILE_NAME BUCKET_NAME # deploys the site to AWS-S3
+                                                   # (requires the aws CLI)
+
+  USAGE
 end
